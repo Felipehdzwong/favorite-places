@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -20,16 +21,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
+    private MapView mapView;
     private GoogleMap mMap;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
 
@@ -54,5 +51,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     @Override
     public void onInfoWindowClick(Marker marker) {
         Toast.makeText(getActivity(), "Info!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        mapView = (MapView) view.findViewById(R.id.map);
+        mapView.onCreate(savedInstanceState);
+        mapView.onResume();
+        mapView.getMapAsync(this);
     }
 }
