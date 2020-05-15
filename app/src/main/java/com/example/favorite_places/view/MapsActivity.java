@@ -29,7 +29,6 @@ public class MapsActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
-        createDatabaseAndTableIfNotAvailable();
 //        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MapFragment()).commit();
     }
 
@@ -66,26 +65,5 @@ public class MapsActivity extends AppCompatActivity {
         return true;
     }
 
-    private void createDatabaseAndTableIfNotAvailable(){
-        final PlaceDb db = Room.databaseBuilder(getApplicationContext(), PlaceDb.class, "placedb").build();
 
-        final Place place = new Place("Saltillo", "City Description here.");
-
-        Thread dbCreationThread = new Thread(){
-            @Override
-            public void run() {
-                db.getPlaceDao().insert(place);
-
-                List<Place> placeList = db.getPlaceDao().getAll();
-
-                StringBuilder stringBuilder = new StringBuilder();
-                for(Place place : placeList){
-                    stringBuilder.append(place.toString()+"\n");
-                }
-
-                Log.i("Get Place: ", stringBuilder.toString());
-            }
-        };
-        dbCreationThread.start();
-    }
 }

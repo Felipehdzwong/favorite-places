@@ -1,5 +1,6 @@
 package com.example.favorite_places.data;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -21,5 +22,5 @@ public interface PlaceDao {
     void delete(Place... places);
 
     @Query("Select * from place")
-    List<Place> getAll();
+    LiveData<List<Place>> getAll();
 }
