@@ -29,6 +29,13 @@ public class PlaceRepo {
         return PlaceDb.getInstance(context).getPlaceDao().getAll();
     }
 
+    public void updatePlace(final Place place){
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() { PlaceDb.getInstance(context).getPlaceDao().update(place); }
+        });
+    }
+
     public void deletePlace(final Place place){
         AsyncTask.execute(new Runnable() {
             @Override
