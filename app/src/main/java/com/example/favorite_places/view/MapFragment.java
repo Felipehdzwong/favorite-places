@@ -1,4 +1,4 @@
-package com.example.favorite_places;
+package com.example.favorite_places.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.favorite_places.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -50,6 +51,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public void onInfoWindowClick(Marker marker) {
+        Fragment detailsFragment = new DetailsFragment();
+        getFragmentManager().beginTransaction().replace(R.id.fragment_container, detailsFragment).commit();
         Toast.makeText(getActivity(), "Info!", Toast.LENGTH_SHORT).show();
     }
 

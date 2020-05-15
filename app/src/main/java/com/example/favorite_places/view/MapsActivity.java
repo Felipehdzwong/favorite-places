@@ -1,15 +1,23 @@
-package com.example.favorite_places;
+package com.example.favorite_places.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.example.favorite_places.R;
+import com.example.favorite_places.data.Place;
+import com.example.favorite_places.db.PlaceDb;
+
+import java.util.List;
 
 public class MapsActivity extends AppCompatActivity {
 
@@ -20,6 +28,9 @@ public class MapsActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+
+        createDatabaseAndTableIfNotAvailable();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MapFragment()).commit();
     }
 
     @Override
@@ -53,5 +64,28 @@ public class MapsActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
         return true;
+    }
+
+    private void createDatabaseAndTableIfNotAvailable(){
+        final PlaceDb db = Room.databaseBuilder(getApplicationContext(), PlaceDb.class, "placedb").build();
+
+        final Place place = new Place("Saltillo", "City Description here.");
+
+        Thread dbCreationThread = new Thread(){
+            @Override
+            public void run() {
+                db.getPlaceDao().insert(place);
+
+                List<Place> placeList = db.getPlaceDao().getAll();
+
+                StringBuilder stringBuilder = new StringBuilder();
+                for(Place place : placeList){
+                    stringBuilder.append(place.toString()+"\n");
+                }
+
+                Log.i("Get Place: ", stringBuilder.toString());
+            }
+        };
+        dbCreationThread.start();
     }
 }
