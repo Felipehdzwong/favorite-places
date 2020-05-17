@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.favorite_places.R;
 import com.example.favorite_places.data.Place;
-import com.example.favorite_places.repo.PlaceRepo;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -23,7 +22,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
-    private PlaceRepo placeRepo;
     private GoogleMap mMap;
 
     @Nullable
@@ -36,16 +34,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     public void onMapReady(GoogleMap googleMap) {
         final PlaceViewModel placeViewModel = new PlaceViewModel(getActivity().getApplication());
         mMap = googleMap;
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                // Add marker in map
-                mMap.addMarker(new MarkerOptions().position(latLng).title("Click to edit details"));
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                // Persist place in db
-                Place place = new Place("New Place", "Latitude, Longitude: " + latLng);
-                placeViewModel.insertNewPlace(place);
-            }
+        mMap.setOnMapClickListener(latLng -> {
+            // Add marker in map
+            mMap.addMarker(new MarkerOptions().position(latLng).title("Click to edit details"));
+            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+            // Persist place in db
+            Place place = new Place(latLng);
+            placeViewModel.insertNewPlace(place);
         });
         mMap.setOnInfoWindowClickListener(this);
 
@@ -58,6 +53,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     @Override
     public void onInfoWindowClick(Marker marker) {
         Fragment detailsFragment = new DetailsFragment();
+        assert getFragmentManager() != null;
         getFragmentManager().beginTransaction().replace(R.id.fragment_container, detailsFragment).commit();
         Toast.makeText(getActivity(), "Info!", Toast.LENGTH_SHORT).show();
     }
