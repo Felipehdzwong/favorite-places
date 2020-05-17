@@ -13,7 +13,7 @@
         android:layout_marginTop="52dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Place name"
+        android:hint="Name"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.318"
@@ -24,12 +24,29 @@
         android:id="@+id/et_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Place description"
+        android:hint="Description"
         android:inputType="textMultiLine"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="131dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.318"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+    <EditText
+        android:id="@+id/et_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Image URL"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.318"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_desc" />
 
     <Button
         android:id="@+id/btn_save"
@@ -39,5 +56,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_desc" />
+        app:layout_constraintTop_toBottomOf="@+id/img_place" />
+
+    <ImageView
+        android:id="@+id/img_place"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_image"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

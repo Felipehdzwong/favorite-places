@@ -4,6 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.android.gms.maps.model.LatLng;
+
+import java.net.URL;
+
 import lombok.Data;
 
 @Data
@@ -14,13 +18,15 @@ public class Place {
     private int id;
 
     @NonNull
+    private LatLng latLng;
+
     private String name;
 
-    @NonNull
     private String desc;
 
-    public Place(@NonNull String name, @NonNull String desc) {
-        this.name = name;
-        this.desc = desc;
+    private URL imgUrl;
+
+    public Place(LatLng latLng) {
+        this.latLng = latLng;
     }
 }
