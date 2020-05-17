@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.favorite_places.R;
 import com.example.favorite_places.data.Place;
@@ -21,6 +23,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
@@ -36,6 +40,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     @Override
     public void onMapReady(GoogleMap googleMap) {
         final PlaceViewModel placeViewModel = new PlaceViewModel(getActivity().getApplication());
+        fillMapLocations(placeViewModel);
         mMap = googleMap;
         mMap.setOnMapClickListener(latLng -> {
             // Add marker in map
@@ -46,11 +51,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
             lng = latLng.longitude;
         });
         mMap.setOnInfoWindowClickListener(this);
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     @Override
@@ -72,5 +72,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
         mapView.getMapAsync(this);
+    }
+
+    private void fillMapLocations(PlaceViewModel placeViewModel) {
+        placeViewModel.getAllPlaces().observe(this, places -> {
+            for (Place place : places){
+                LatLng location = new LatLng(place.getLat(), place.getLng());
+                mMap.addMarker(new MarkerOptions().position(location).title(place.getName()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+            }
+        });
     }
 }
