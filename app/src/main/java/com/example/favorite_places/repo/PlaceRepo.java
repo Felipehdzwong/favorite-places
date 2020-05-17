@@ -29,6 +29,10 @@ public class PlaceRepo {
         return PlaceDb.getInstance(context).getPlaceDao().getAll();
     }
 
+    public LiveData<Place> getPlaceById(int id){
+        return PlaceDb.getInstance(context).getPlaceDao().getById(id);
+    }
+
     public void updatePlace(final Place place){
         AsyncTask.execute(new Runnable() {
             @Override

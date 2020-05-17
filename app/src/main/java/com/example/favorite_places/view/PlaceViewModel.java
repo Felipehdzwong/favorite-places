@@ -30,6 +30,10 @@ public class PlaceViewModel extends AndroidViewModel {
         return places;
     }
 
+    public LiveData<Place> getPlaceById(int id){
+        return placeRepo.getPlaceById(id);
+    }
+
     public void updatePlace(Place place){
         placeRepo.updatePlace(place);
     }
