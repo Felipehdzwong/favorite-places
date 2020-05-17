@@ -17,7 +17,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -35,12 +34,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        final PlaceViewModel placeViewModel = new PlaceViewModel(getActivity().getApplication());
         mMap = googleMap;
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
+                // Add marker in map
                 mMap.addMarker(new MarkerOptions().position(latLng).title("Click to edit details"));
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                // Persist place in db
+                Place place = new Place("New Place", "Latitude, Longitude: " + latLng);
+                placeViewModel.insertNewPlace(place);
             }
         });
         mMap.setOnInfoWindowClickListener(this);
@@ -60,7 +64,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        MapView mapView = (MapView) view.findViewById(R.id.map);
+        MapView mapView = (MapView) view.findViewById(R.id.fragment_map__map);
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
         mapView.getMapAsync(this);

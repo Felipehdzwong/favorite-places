@@ -4,20 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.room.Room;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.favorite_places.R;
-import com.example.favorite_places.data.Place;
-import com.example.favorite_places.db.PlaceDb;
-
-import java.util.List;
 
 public class MapsActivity extends AppCompatActivity {
 

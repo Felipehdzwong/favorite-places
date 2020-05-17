@@ -25,6 +25,10 @@ public class PlaceRecyclerAdapter extends RecyclerView.Adapter<PlaceViewHolder> 
         this.placeList = placeList;
     }
 
+    public void setData(List<Place> places){
+        this.placeList = places;
+    }
+
     @NonNull
     @Override
     public PlaceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
