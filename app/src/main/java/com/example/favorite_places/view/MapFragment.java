@@ -1,6 +1,7 @@
 package com.example.favorite_places.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
+    private double lat, lng;
     private GoogleMap mMap;
 
     @Nullable
@@ -33,28 +35,29 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     @Override
     public void onMapReady(GoogleMap googleMap) {
         final PlaceViewModel placeViewModel = new PlaceViewModel(getActivity().getApplication());
+        fillMapLocations(placeViewModel);
         mMap = googleMap;
         mMap.setOnMapClickListener(latLng -> {
             // Add marker in map
             mMap.addMarker(new MarkerOptions().position(latLng).title("Click to edit details"));
             mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-            // Persist place in db
-            Place place = new Place(latLng);
-            placeViewModel.insertNewPlace(place);
+
+            lat = latLng.latitude;
+            lng = latLng.longitude;
         });
         mMap.setOnInfoWindowClickListener(this);
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Fragment detailsFragment = new DetailsFragment();
-        assert getFragmentManager() != null;
-        getFragmentManager().beginTransaction().replace(R.id.fragment_container, detailsFragment).commit();
+        Bundle result = new Bundle();
+        result.putDouble("key_lat", lat);
+        result.putDouble("key_lng", lng);
+        getParentFragmentManager().setFragmentResult("requestKey", result);
+        Log.i("result-map", result.toString());
+
+        DetailsDialog detailsDialog = new DetailsDialog();
+        detailsDialog.show(getFragmentManager(), "detailsDialog");
         Toast.makeText(getActivity(), "Info!", Toast.LENGTH_SHORT).show();
     }
 
@@ -64,5 +67,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
         mapView.getMapAsync(this);
+    }
+
+    private void fillMapLocations(PlaceViewModel placeViewModel) {
+        placeViewModel.getAllPlaces().observe(this, places -> {
+            for (Place place : places){
+                LatLng location = new LatLng(place.getLat(), place.getLng());
+                mMap.addMarker(new MarkerOptions().position(location).title(place.getName()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+            }
+        });
     }
 }

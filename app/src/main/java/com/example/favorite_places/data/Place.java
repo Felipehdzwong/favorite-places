@@ -18,15 +18,19 @@ public class Place {
     private int id;
 
     @NonNull
-    private LatLng latLng;
+    private double lat;
+
+    @NonNull
+    private double lng;
 
     private String name;
 
     private String desc;
 
-    private URL imgUrl;
+    private String imgUrl;
 
-    public Place(LatLng latLng) {
-        this.latLng = latLng;
+    public Place(double lat, double lng) {
+        this.lat = lat;
+        this.lng = lng;
     }
 }

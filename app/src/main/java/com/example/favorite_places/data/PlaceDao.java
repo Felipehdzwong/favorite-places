@@ -23,4 +23,7 @@ public interface PlaceDao {
 
     @Query("Select * from place")
     LiveData<List<Place>> getAll();
+
+    @Query("Select * from place where id = :id")
+    LiveData<Place> getById(int id);
 }
