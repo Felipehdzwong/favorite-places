@@ -40,7 +40,7 @@ public class ListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
-        placeViewModel.getAllPlaces().observe(this, new Observer<List<Place>>() {
+        placeViewModel.getAllPlaces().observe(getViewLifecycleOwner(), new Observer<List<Place>>() {
             @Override
             public void onChanged(List<Place> places) {
                 adapter.setData(places);

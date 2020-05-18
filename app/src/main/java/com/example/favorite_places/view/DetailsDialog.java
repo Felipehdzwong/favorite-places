@@ -10,13 +10,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentResultListener;
 
 import com.example.favorite_places.R;
 import com.example.favorite_places.data.Place;
 
-public class DetailsFragment extends Fragment {
+public class DetailsDialog extends DialogFragment {
 
     Place place = null;
 
@@ -24,13 +24,16 @@ public class DetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final PlaceViewModel placeViewModel = new PlaceViewModel(getActivity().getApplication());
-        View view = inflater.inflate(R.layout.fragment_details, container, false);
+        View view = inflater.inflate(R.layout.dialog_details, container, false);
 
         // widgets
         EditText etPlaceName = view.findViewById(R.id.et_name);
         EditText etPlaceDesc = view.findViewById(R.id.et_desc);
         EditText etPlaceImgUrl = view.findViewById(R.id.et_image);
         Button btnSave = view.findViewById(R.id.btn_save);
+        Button btnCancel = view.findViewById(R.id.btn_cancel);
+
+        btnCancel.setOnClickListener(v -> getDialog().dismiss());
 
         btnSave.setOnClickListener(v -> {
             String name = etPlaceName.getText().toString();
@@ -42,7 +45,10 @@ public class DetailsFragment extends Fragment {
                 place.setDesc(desc);
                 place.setImgUrl(imgUrl);
                 placeViewModel.insertNewPlace(place);
+                getDialog().dismiss();
                 Toast.makeText(getContext(), "Place inserted", Toast.LENGTH_SHORT).show();
+                // maybe this fragment shouldn't be call here. MapFragment should update itself after closing dialog
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new MapFragment()).commit();
             }else {
                 Toast.makeText(getContext(), "Enter a valid name.", Toast.LENGTH_SHORT).show();
             }

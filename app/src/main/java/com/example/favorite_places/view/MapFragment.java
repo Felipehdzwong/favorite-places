@@ -10,9 +10,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 
 import com.example.favorite_places.R;
 import com.example.favorite_places.data.Place;
@@ -23,8 +20,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.util.List;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
@@ -61,8 +56,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         getParentFragmentManager().setFragmentResult("requestKey", result);
         Log.i("result-map", result.toString());
 
-        Fragment detailsFragment = new DetailsFragment();
-        getFragmentManager().beginTransaction().replace(R.id.fragment_container, detailsFragment).commit();
+        DetailsDialog detailsDialog = new DetailsDialog();
+        detailsDialog.show(getFragmentManager(), "detailsDialog");
         Toast.makeText(getActivity(), "Info!", Toast.LENGTH_SHORT).show();
     }
 
