@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">favorite-places</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Fav Places</string>
     <string name="title_item_app_info">App Info</string>
     <string name="title_item_places_list">Places List</string>
     <string name="title_item_map">Map</string>
