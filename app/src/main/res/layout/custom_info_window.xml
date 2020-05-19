@@ -34,11 +34,6 @@
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/custom_info_window__img_place"/>
-
     </LinearLayout>
 
 </LinearLayout>

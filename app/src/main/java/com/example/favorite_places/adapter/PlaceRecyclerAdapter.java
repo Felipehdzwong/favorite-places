@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.favorite_places.R;
 import com.example.favorite_places.data.Place;
 import com.example.favorite_places.repo.PlaceRepo;
@@ -71,10 +72,17 @@ public class PlaceRecyclerAdapter extends RecyclerView.Adapter<PlaceRecyclerAdap
         }
 
         public void bindData(int position, Place place) {
-            imgPlace.setImageResource(R.drawable.ic_image_black_24dp);
+            loadImagePlaceIntoImageView(place, imgPlace);
             imgDelete.setImageResource(R.drawable.ic_delete_black_24dp);
             tvPlaceName.setText(place.getName());
             tvPlaceDesc.setText(place.getDesc());
+        }
+
+        public void loadImagePlaceIntoImageView(Place place, ImageView imageView){
+            Glide.with(itemView)
+                    .load(place.getImgUrl())
+                    .placeholder(R.drawable.ic_image_placeholder)
+                    .into(imageView);
         }
 
         @Override

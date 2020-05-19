@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:paddingTop="20sp"
+    android:paddingBottom="20sp">
 
     <ImageView
         android:id="@+id/place_row__img_place"
@@ -22,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:paddingEnd="16sp"
         android:text="Place name"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,9 +50,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:paddingEnd="16sp"
         android:text="Place description"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/place_row__tv_name" />
+        app:layout_constraintTop_toBottomOf="@+id/place_row__tv_name"
+        app:layout_constraintVertical_bias="0.003" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -73,7 +73,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     private void fillMapLocations(PlaceViewModel placeViewModel) {
         placeViewModel.getAllPlaces().observe(this, places -> {
             for (Place place : places){
-                mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getContext()));
+                mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getContext(), place));
                 LatLng location = new LatLng(place.getLat(), place.getLng());
                 mMap.addMarker(new MarkerOptions().position(location).title(place.getName()).snippet(place.getDesc()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
