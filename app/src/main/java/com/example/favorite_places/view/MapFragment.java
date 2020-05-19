@@ -39,7 +39,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         mMap = googleMap;
         mMap.setOnMapClickListener(latLng -> {
             // Add marker in map
-            mMap.addMarker(new MarkerOptions().position(latLng).title("Click to edit details"));
+            mMap.addMarker(new MarkerOptions().position(latLng).title("Click me!").snippet("Click to edit and save place details.")).showInfoWindow();
             mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 
             lat = latLng.latitude;
@@ -50,6 +50,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public void onInfoWindowClick(Marker marker) {
+        marker.hideInfoWindow();
         Bundle result = new Bundle();
         result.putDouble("key_lat", lat);
         result.putDouble("key_lng", lng);
@@ -57,7 +58,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         Log.i("result-map", result.toString());
 
         DetailsDialog detailsDialog = new DetailsDialog();
-        detailsDialog.show(getFragmentManager(), "detailsDialog");
+        detailsDialog.show(getParentFragmentManager(), "detailsDialog");
         Toast.makeText(getActivity(), "Info!", Toast.LENGTH_SHORT).show();
     }
 
@@ -72,8 +73,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     private void fillMapLocations(PlaceViewModel placeViewModel) {
         placeViewModel.getAllPlaces().observe(this, places -> {
             for (Place place : places){
+                mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getContext(), place));
                 LatLng location = new LatLng(place.getLat(), place.getLng());
-                mMap.addMarker(new MarkerOptions().position(location).title(place.getName()));
+                mMap.addMarker(new MarkerOptions().position(location).title(place.getName()).snippet(place.getDesc()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
             }
         });
