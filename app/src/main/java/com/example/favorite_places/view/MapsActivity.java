@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.favorite_places.R;
 
@@ -39,15 +38,12 @@ public class MapsActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.mi_map:
-                Toast.makeText(this, "Map item selected!", Toast.LENGTH_SHORT).show();
                 selectedFragment = new MapFragment();
                 break;
             case R.id.mi_list:
-                Toast.makeText(this, "List item selected!", Toast.LENGTH_SHORT).show();
                 selectedFragment = new ListFragment();
                 break;
             case R.id.mi_info:
-                Toast.makeText(this, "Info item selected!", Toast.LENGTH_SHORT).show();
                 selectedFragment = new InfoFragment();
                 break;
             default:

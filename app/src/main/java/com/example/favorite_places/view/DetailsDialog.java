@@ -46,7 +46,7 @@ public class DetailsDialog extends DialogFragment {
                 place.setImgUrl(imgUrl);
                 placeViewModel.insertNewPlace(place);
                 getDialog().dismiss();
-                Toast.makeText(getContext(), "Place inserted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Place saved.", Toast.LENGTH_SHORT).show();
                 // maybe this fragment shouldn't be call here. MapFragment should update itself after closing dialog
                 getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new MapFragment()).commit();
             }else {
