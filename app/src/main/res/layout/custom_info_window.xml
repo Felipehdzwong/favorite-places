@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    android:background="@android:color/white">
+    android:background="@color/lightYellow">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <TextView
             android:id="@+id/custom_info_window__tv_title"
@@ -19,8 +21,8 @@
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Title"
-            android:textColor="@android:color/black"
+            android:text="@string/tv_text_title"
+            android:textColor="@color/caribbeanGreen"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -30,8 +32,8 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="8"
-            android:text="Snippet"
-            android:textColor="@android:color/black"
+            android:text="@string/tv_text_snippet"
+            android:textColor="@color/blueMunsell"
             android:textSize="14sp" />
 
     </LinearLayout>

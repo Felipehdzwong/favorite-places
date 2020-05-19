@@ -1,7 +1,25 @@
 <resources>
     <string name="app_name">favorite-places</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Fav Places</string>
     <string name="title_item_app_info">App Info</string>
     <string name="title_item_places_list">Places List</string>
     <string name="title_item_map">Map</string>
+    <string name="app_info">This is the mobile development final project assignment.\nIt is an app that allows the user to save his/her favorite places in a map and visualize them in a list.
+        The following features are covered in this app:\n\n
+        &#8227; Google map with markers and custom info window.\n
+        &#8227; Custom launcher icon\n
+        &#8227; Build in Android 5.0 Lollipop\n
+        &#8227; Image load with Glide\n
+        &#8227; Data persistence with Room API\n
+        &#8227; View of items in a recycler view\n
+        &#8227; Toolbar menu for fragment navigation\n
+    </string>
+    <string name="tv_text_place_details">Place details</string>
+    <string name="btn_text_cancel">Cancel</string>
+    <string name="btn_text_save">Save</string>
+    <string name="et_hint_image_url">Image URL</string>
+    <string name="et_hint_description">Description</string>
+    <string name="et_hint_name">Name</string>
+    <string name="tv_text_snippet">Snippet</string>
+    <string name="tv_text_title">Title</string>
 </resources>
