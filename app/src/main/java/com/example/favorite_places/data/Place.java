@@ -4,10 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.google.android.gms.maps.model.LatLng;
-
-import java.net.URL;
-
 import lombok.Data;
 
 @Data

@@ -21,8 +21,8 @@ public class MapsActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MapFragment()).commit();
+        // TO-DO implement navigation controller
+        // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MapFragment()).commit();
     }
 
     @Override

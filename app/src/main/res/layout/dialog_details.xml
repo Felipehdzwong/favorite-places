@@ -4,108 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightYellow">
+    android:background="@color/babyPowder"
+    android:padding="20sp">
 
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/et_hint_name"
         android:inputType="textMultiLine"
         android:maxLines="1"
-        android:textColor="@color/blueMunsell"
-        android:textColorHint="@color/orangeYellow"
+        android:textColor="@color/richBlack"
+        android:textColorHint="@color/orangePeel"
+        app:layout_constraintTop_toBottomOf="@id/tv_heading"
         app:layout_constraintBottom_toTopOf="@+id/et_desc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_heading" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/et_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/et_hint_description"
-        android:maxLines="5"
-        android:textColorHint="@color/orangeYellow"
-        android:textColor="@color/blueMunsell"
         android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:textColor="@color/richBlack"
+        android:textColorHint="@color/orangePeel"
+        app:layout_constraintTop_toBottomOf="@id/et_name"
         app:layout_constraintBottom_toTopOf="@+id/et_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/et_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/et_hint_image_url"
         android:inputType="textMultiLine"
         android:maxLines="3"
-        android:textColor="@color/blueMunsell"
-        android:textColorHint="@color/orangeYellow"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/richBlack"
+        android:textColorHint="@color/orangePeel"
+        app:layout_constraintTop_toBottomOf="@id/et_desc"
+        app:layout_constraintBottom_toTopOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_desc" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:background="@color/turquoise"
         android:text="@string/btn_text_save"
-        android:textColor="@color/lightYellow"
-        android:background="@color/caribbeanGreen"
+        android:textColor="@color/babyPowder"
+        app:layout_constraintTop_toBottomOf="@id/et_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_image" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_cancel"
+        tools:layout_editor_absoluteX="78dp" />
 
     <Button
         android:id="@+id/btn_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:background="@color/imperialRed"
         android:text="@string/btn_text_cancel"
-        android:textColor="@color/lightYellow"
-        android:background="@color/pinkParadise"
+        android:textColor="@color/babyPowder"
+        app:layout_constraintTop_toBottomOf="@id/et_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_save"
-        app:layout_constraintTop_toBottomOf="@+id/et_image" />
+        app:layout_constraintLeft_toRightOf="@id/btn_save"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="245dp" />
 
     <TextView
         android:id="@+id/tv_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/tv_text_place_details"
-        android:textSize="24sp"
+        android:textColor="@color/richBlack"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/blueMunsell"
         app:layout_constraintBottom_toTopOf="@+id/et_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

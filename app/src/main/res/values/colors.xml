@@ -4,9 +4,9 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     
-    <color name="lightYellow">#f8ffe5</color>
-    <color name="caribbeanGreen">#06d6a0</color>
-    <color name="blueMunsell">#1b9aaa</color>
-    <color name="pinkParadise">#ef476f</color>
-    <color name="orangeYellow">#ffc43d</color>
+    <color name="babyPowder">#fdfffc</color>
+    <color name="turquoise">#41ead4</color>
+    <color name="richBlack">#011627</color>
+    <color name="imperialRed">#f71735</color>
+    <color name="orangePeel">#ff9f1c</color>
 </resources>

@@ -14,7 +14,7 @@
         &#8227; View of items in a recycler view\n
         &#8227; Toolbar menu for fragment navigation\n
     </string>
-    <string name="tv_text_place_details">Place details</string>
+    <string name="tv_text_place_details">New Place</string>
     <string name="btn_text_cancel">Cancel</string>
     <string name="btn_text_save">Save</string>
     <string name="et_hint_image_url">Image URL</string>
@@ -22,4 +22,7 @@
     <string name="et_hint_name">Name</string>
     <string name="tv_text_snippet">Snippet</string>
     <string name="tv_text_title">Title</string>
+    <string name="place_image_holder">place image holder</string>
+    <string name="delete_icon">delete icon</string>
+    <string name="main_fragment_tv_text">Click on the toolbar options to start.</string>
 </resources>

@@ -5,11 +5,13 @@
     <item
         android:id="@+id/mi_map"
         android:icon="@android:drawable/ic_menu_mapmode"
-        android:title="@string/title_item_map" />
+        android:title="@string/title_item_map"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/mi_list"
-        android:icon="?android:attr/actionModeFindDrawable"
-        android:title="@string/title_item_places_list" />
+        android:icon="@android:drawable/btn_star"
+        android:title="@string/title_item_places_list"
+        app:showAsAction="always" />
     <item
         android:id="@+id/mi_info"
         android:icon="@android:drawable/ic_menu_info_details"

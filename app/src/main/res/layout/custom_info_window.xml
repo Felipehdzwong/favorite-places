@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    android:background="@color/lightYellow">
+    android:background="@color/babyPowder">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/tv_text_title"
-            android:textColor="@color/caribbeanGreen"
+            android:textColor="@color/turquoise"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -33,7 +33,7 @@
             android:ellipsize="end"
             android:maxLines="8"
             android:text="@string/tv_text_snippet"
-            android:textColor="@color/blueMunsell"
+            android:textColor="@color/richBlack"
             android:textSize="14sp" />
 
     </LinearLayout>
