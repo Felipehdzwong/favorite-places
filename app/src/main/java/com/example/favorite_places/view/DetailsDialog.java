@@ -18,7 +18,7 @@ import com.example.favorite_places.data.Place;
 
 public class DetailsDialog extends DialogFragment {
 
-    Place place = null;
+    private Place place = null;
 
     @Nullable
     @Override

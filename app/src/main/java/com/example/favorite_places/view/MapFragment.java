@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     private double lat, lng;
     private GoogleMap mMap;
+    private static final String MARKER_DEFAULT_TITLE = "Click me!";
+    private static final String MARKER_DEFAULT_SNIPPET = "Click to edit and save place details.";
 
     @Nullable
     @Override
@@ -38,7 +41,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         mMap = googleMap;
         mMap.setOnMapClickListener(latLng -> {
             // Add marker in map
-            mMap.addMarker(new MarkerOptions().position(latLng).title("Click me!").snippet("Click to edit and save place details.")).showInfoWindow();
+            mMap.addMarker(new MarkerOptions().position(latLng).title(MARKER_DEFAULT_TITLE).snippet(MARKER_DEFAULT_SNIPPET)).showInfoWindow();
             mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 
             lat = latLng.latitude;
@@ -49,15 +52,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        marker.hideInfoWindow();
-        Bundle result = new Bundle();
-        result.putDouble("key_lat", lat);
-        result.putDouble("key_lng", lng);
-        getParentFragmentManager().setFragmentResult("requestKey", result);
-        Log.i("result-map", result.toString());
+        if(marker.getTitle().equals(MARKER_DEFAULT_TITLE) && marker.getSnippet().equals(MARKER_DEFAULT_SNIPPET)){
+            marker.hideInfoWindow();
+            Bundle result = new Bundle();
+            result.putDouble("key_lat", lat);
+            result.putDouble("key_lng", lng);
+            getParentFragmentManager().setFragmentResult("requestKey", result);
 
-        DetailsDialog detailsDialog = new DetailsDialog();
-        detailsDialog.show(getParentFragmentManager(), "detailsDialog");
+            DetailsDialog detailsDialog = new DetailsDialog();
+            detailsDialog.show(getParentFragmentManager(), "detailsDialog");
+        }
     }
 
     @Override
